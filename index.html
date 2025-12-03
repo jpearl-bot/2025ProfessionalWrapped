@@ -10,9 +10,9 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(100%); }
         }
-        @keyframes spin-circles {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes checkerboard-scroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; } /* Scrolls diagonally */
         }
 
         body {
@@ -27,27 +27,23 @@
             text-align: center;
         }
 
-        /* NEW: Black and White Concentric Circles (Spinning for Dynamic Effect) */
-        .bg-circles {
+        /* NEW: Reliable, Moving Checkerboard Graphic */
+        .bg-pattern {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 150vw; /* Make it massive to fill the screen */
-            height: 150vh;
-            transform: translate(-50%, -50%);
-            background-image: radial-gradient(circle at center, 
-                #111 5%, #000 5.1%, #000 10%, #111 10.1%, 
-                #111 15%, #000 15.1%, #000 20%, #111 20.1%,
-                #111 25%, #000 25.1%, #000 30%, #111 30.1%,
-                #111 35%, #000 35.1%, #000 40%, #111 40.1%,
-                #111 45%, #000 45.1%, #000 50%, #111 50.1%,
-                #111 55%, #000 55.1%, #000 60%, #111 60.1%,
-                #111 65%, #000 65.1%, #000 70%, #111 70.1%
-            );
-            background-size: cover;
-            opacity: 0.1;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            /* Black and Dark Gray Checkerboard */
+            background-image: 
+                linear-gradient(45deg, #111 25%, transparent 25%),
+                linear-gradient(-45deg, #111 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #111 75%),
+                linear-gradient(-45deg, transparent 75%, #111 75%);
+            background-size: 80px 80px;
+            background-color: #000000;
+            opacity: 0.15; /* Subtle visibility */
             z-index: -2;
-            animation: spin-circles 80s linear infinite; /* Slow, continuous spin */
+            animation: checkerboard-scroll 100s linear infinite; /* Slow, continuous motion */
         }
         
         /* 2. Content Structure */
@@ -60,11 +56,11 @@
         }
         h1 {
             font-size: 4em;
-            color: #F00000; /* Bold Red Accent */
+            color: #00FFFF; /* NEW: Vibrant Cyan/Blue Title */
             text-align: center;
             margin-bottom: 20px;
             font-weight: 900;
-            text-shadow: 0 0 10px rgba(240, 0, 0, 0.5);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
         }
         h2 {
             font-size: 2.2em;
@@ -105,7 +101,7 @@
             display: block;
             margin-bottom: 5px;
             letter-spacing: -1px;
-            color: #5B40FF; /* Purple/Blue Accent */
+            color: #5B40FF; /* Metric Purple/Blue Accent (Kept for contrast) */
         }
         .sub-text {
             font-size: 0.9em;
@@ -113,11 +109,6 @@
         }
         .card:hover { border-bottom-color: #1DB954; }
         
-        /* The pulse animation is now only used for hover/focus if needed, keeping the background clean. */
-        .clickable-card {
-            /* No animation here to keep it clean */
-        }
-
         /* 3. Collaboration Race (Vertical Ranking Layout) */
         .collaborator-race-container {
             background: #1a1a1a;
@@ -156,7 +147,7 @@
         .rank {
             font-size: 2em;
             font-weight: 900;
-            color: #F00000;
+            color: #00FFFF; /* NEW: Rank color matches title */
             margin-right: 20px;
             width: 30px;
         }
@@ -219,7 +210,7 @@
 </head>
 <body>
 
-<div class="bg-circles"></div>
+<div class="bg-pattern"></div>
 
 <div class="container">
     <h1>2025 Professional Wrapped</h1>
@@ -321,7 +312,7 @@
 
         <div class="card clickable-card" onclick="showDetails('X-Factor: Indispensable Force', 'Your citation highlights Excellence in Execution, being the Ultimate Team Player, and giving beyond your role. You are an indispensable force within your team.')">
             <h3>Top Tier Recognition</h3>
-            <span class="metric-value" style="color: #F00000;">1</span>
+            <span class="metric-value" style="color: #00FFFF;">1</span>
             <span class="sub-text">X-Factor Award Received</span>
         </div>
     </div>
