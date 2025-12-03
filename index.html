@@ -15,10 +15,9 @@
             70% { box-shadow: 0 0 0 20px rgba(29, 185, 84, 0); }
             100% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0); }
         }
-        @keyframes race-grow-shrink {
-            0% { transform: scale(0.7); opacity: 0.5; }
-            50% { transform: scale(1.5); opacity: 1; }
-            100% { transform: scale(0.7); opacity: 0.5; }
+        @keyframes race-movement {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
         }
 
         body {
@@ -114,81 +113,84 @@
         }
         .card:hover { border-bottom-color: #1DB954; }
         
-        /* Sequential Slides for Impact & Reach */
+        /* Persistent Pulse for Clickability */
         .clickable-card {
-            position: absolute; 
-            width: 90%; 
-            left: 5%;
             animation: pulse 2s infinite; 
         }
-        .next-button {
-            background: #F00000;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 20px;
-            display: block;
-            margin-left: auto;
-        }
 
-        /* Top Collaborators Race Emuation (DYNAMIC) */
-        .collaborator-race {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end; 
-            padding: 50px 0;
+        /* 3. Collaboration Race (Vertical Ranking Layout) */
+        .collaborator-race-container {
             background: #1a1a1a;
             border-radius: 10px;
-            min-height: 400px;
-        }
-        .collaborator-item {
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: all 0.5s ease-out;
-            animation: race-grow-shrink 10s infinite ease-in-out;
+            align-items: flex-start;
+            position: relative;
         }
-        .collaborator-item:nth-child(1) { animation-duration: 8s; animation-delay: 0s; }
-        .collaborator-item:nth-child(2) { animation-duration: 9s; animation-delay: -3s; }
-        .collaborator-item:nth-child(3) { animation-duration: 10s; animation-delay: -5s; }
-        .collaborator-item:nth-child(4) { animation-duration: 8.5s; animation-delay: -7s; }
-        .collaborator-item:nth-child(5) { animation-duration: 9.5s; animation-delay: -1s; }
-
-
+        .race-track {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .collaborator-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 5px 0;
+            border-bottom: 1px solid #282828;
+            transform: translateX(-100%); /* Start off-screen left */
+            animation: race-movement 3s ease-out forwards;
+        }
+        /* Specific delays for the race visual */
+        .collaborator-item:nth-child(1) { animation-delay: 0.1s; }
+        .collaborator-item:nth-child(2) { animation-delay: 0.3s; }
+        .collaborator-item:nth-child(3) { animation-delay: 0.5s; }
+        .collaborator-item:nth-child(4) { animation-delay: 0.7s; }
+        .collaborator-item:nth-child(5) { animation-delay: 0.9s; }
+        
+        .rank {
+            font-size: 2em;
+            font-weight: 900;
+            color: #F00000;
+            margin-right: 20px;
+            width: 30px;
+        }
         .collaborator-image {
-            width: 100px;
-            height: 100px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background-size: cover;
             background-position: center;
-            border: 4px solid #F00000; /* Red Ring */
-            transition: all 0.3s;
+            border: 3px solid #1DB954; 
         }
-        .collaborator-item:hover .collaborator-image {
-            border-color: #1DB954; /* Highlight on hover */
-        }
-        /* Image mapping based on file names */
+        /* Image mapping */
         .ruby .collaborator-image { background-image: url('images/ruby.jpg'); }
         .leanne .collaborator-image { background-image: url('images/leanne.jpg'); }
         .lauren .collaborator-image { background-image: url('images/lauren.jpg'); }
         .nisha .collaborator-image { background-image: url('images/nisha.jpg'); }
         .paige .collaborator-image { background-image: url('images/paige.jpg'); }
 
-        .collaborator-name {
-            color: #FFFFFF;
-            font-weight: bold;
-            font-size: 0.8em;
-            margin-top: 10px;
-            text-align: center;
-            width: 100px;
+        .collaborator-info {
+            display: flex;
+            flex-direction: column;
+            margin-left: 15px;
         }
-
-        /* Quiz Styling */
+        .collaborator-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #FFFFFF;
+        }
+        .collaborator-context {
+            font-size: 0.9em;
+            color: #B3B3B3;
+        }
+        
+        /* 4. Quiz Styling */
         .quiz-section {
             background-color: #282828;
             padding: 30px;
@@ -223,136 +225,43 @@
     <h1>2025 Professional Wrapped</h1>
 
     <h2>1. Impact & Reach: Year in Review</h2>
-    <div id="impact-slides" style="position: relative; height: 350px;">
+    <div class="category">
         
-        <div class="card clickable-card impact-slide" id="slide-1" style="display: block;" onclick="showDetails('Trainee Reach Score: 737', 'You ran 15 distinct training sessions, reaching 737 employees. Your internal education efforts drove this immense organizational reach.')">
+        <div class="card clickable-card" onclick="showDetails('Trainee Reach Score: 737', 'You ran 15 distinct training sessions, reaching 737 employees. Your internal education efforts drove this immense organizational reach.')">
             <h3>Trainee Reach Score</h3>
             <span class="metric-value">737</span>
             <span class="sub-text">Total Employees Taught (Across 15 Sessions)</span>
-            <button onclick="nextSlide(2, event)" class="next-button">NEXT STAT</button>
         </div>
 
-        <div class="card clickable-card impact-slide" id="slide-2" style="display: none;" onclick="showDetails('Module Adoption: 23% (Goal: 10%)', 'Your goal for this NEW module rollout (including your marketing video and training) was 10%. You achieved 23%, exceeding the target by 130%.')">
+        <div class="card clickable-card" onclick="showDetails('Module Adoption: 23% (Goal: 10%)', 'Your goal for this NEW module rollout (including your marketing video and training) was 10%. You achieved 23%, exceeding the target by 130%.')">
             <h3>Module Adoption Rate</h3>
             <span class="metric-value">23%</span>
             <span class="sub-text">New Lattice Grow Module (Goal: 10%)</span>
-            <button onclick="nextSlide(3, event)" class="next-button">NEXT STAT</button>
         </div>
 
-        <div class="card clickable-card impact-slide" id="slide-3" style="display: none;" onclick="showDetails('Strategic Objectives Managed', 'You oversaw the precise upload and integration of 2,623 strategic OKRs, providing a clear operational foundation for the entire business.')">
+        <div class="card clickable-card" onclick="showDetails('Strategic Objectives Managed', 'You oversaw the precise upload and integration of 2,623 strategic OKRs, providing a clear operational foundation for the entire business.')">
             <h3>Operational Strategy Lift</h3>
             <span class="metric-value">2,623</span>
             <span class="sub-text">OKRs Uploaded/Managed</span>
-            <button onclick="nextSlide('end', event)" class="next-button">COMPLETE SECTION</button>
         </div>
     </div>
 
     <h2>2. Core Output: The Collaboration Race</h2>
-    <div class="collaborator-race">
-        <div class="collaborator-item ruby" onclick="showDetails('Ruby Sheikh - #1 Collaborator', 'You spent the most time and energy collaborating with Ruby this year.')">
-            <div class="collaborator-image"></div>
-            <div class="collaborator-name">1. Ruby Sheikh</div>
-        </div>
-        <div class="collaborator-item leanne" onclick="showDetails('Leanne Oliver - #2 Collaborator', 'A high-frequency contact essential to key project execution.')">
-            <div class="collaborator-image"></div>
-            <div class="collaborator-name">2. Leanne Oliver</div>
-        </div>
-        <div class="collaborator-item lauren" onclick="showDetails('Lauren Ruhstorfer - #3 Collaborator', 'Critical partner across cross-functional initiatives.')">
-            <div class="collaborator-image"></div>
-            <div class="collaborator-name">3. Lauren Ruhstorfer</div>
-        </div>
-        <div class="collaborator-item nisha" onclick="showDetails('Nisha Thamban - #4 Collaborator', 'Crucial project member and frequent meeting co-pilot.')">
-            <div class="collaborator-image"></div>
-            <div class="collaborator-name">4. Nisha Thamban</div>
-        </div>
-        <div class="collaborator-item paige" onclick="showDetails('Paige Kenigsburg - #5 Collaborator', 'Essential stakeholder and core team support.')">
-            <div class="collaborator-image"></div>
-            <div class="collaborator-name">5. Paige Kenigsburg</div>
-        </div>
-    </div>
-
-    <h2>3. Innovation & Achievement: High-Volume Metrics</h2>
-    <div class="category">
-        
-        <div class="card clickable-card" onclick="showDetails('498 AI Prompts', 'Nearly 500 instances of leveraging Generative AI to accelerate drafting, summarization, and research.')">
-            <h3>AI Co-Pilot Score</h3>
-            <span class="metric-value">498</span>
-            <span class="sub-text">Prompts Sent to Gemini</span>
-        </div>
-
-        <div class="card clickable-card" onclick="showDetails('139 Screen Shares', 'Your expertise was on full display, visually guiding colleagues in 139 meetings.')">
-            <h3>Expertise On Display</h3>
-            <span class="metric-value">139</span>
-            <span class="sub-text">Meetings with Screen Share</span>
-        </div>
-        
-        <div class="card clickable-card" onclick="showDetails('X-Factor: Indispensable Force', 'Your citation highlights Excellence in Execution, being the Ultimate Team Player, and giving beyond your role. You are an indispensable force within your team.')">
-            <h3>Top Tier Recognition</h3>
-            <span class="metric-value" style="color: #F00000;">1</span>
-            <span class="sub-text">X-Factor Award Received</span>
-        </div>
-    </div>
-    
-    <div class="quiz-section">
-        <h2>4. Test Your Knowledge: The Data Challenge</h2>
-        <p style="color: #AAAAAA;">Guess the number of unique survey responses I collected in 2025:</p>
-        <input type="number" id="quizGuess" placeholder="Enter your guess" style="padding: 10px; margin: 10px 10px 10px 0; width: 200px; border-radius: 5px; border: none; background: #121212; color: white;">
-        <button onclick="checkQuiz()" class="quiz-button">Submit Guess</button>
-        <p id="quizResult" style="margin-top: 15px; font-weight: bold;"></p>
-    </div>
-
-</div>
-
-<script>
-    function showDetails(title, message) {
-        alert(title + "\n\n" + message);
-    }
-
-    // Sequential Slides Logic for Section 1
-    let currentSlide = 1;
-    function nextSlide(nextId, event) {
-        event.stopPropagation(); // Prevents clicking the card when clicking the button
-
-        const currentElement = document.getElementById(`slide-${currentSlide}`);
-        currentElement.style.display = 'none';
-        
-        if (nextId === 'end') {
-            document.getElementById('impact-slides').style.display = 'none';
-            alert("Impact & Reach section complete! Scroll down to see the Collaboration Race and your high-volume metrics.");
-        } else {
-            currentSlide = nextId;
-            const nextElement = document.getElementById(`slide-${currentSlide}`);
-            nextElement.style.display = 'block';
-        }
-    }
-
-    // Quiz Functionality 
-    const correctValue = 921; // Your actual Survey Response number
-
-    function checkQuiz() {
-        const guess = document.getElementById('quizGuess').value;
-        const resultElement = document.getElementById('quizResult');
-
-        if (!guess) {
-            resultElement.textContent = "Please enter a number!";
-            resultElement.style.color = 'yellow';
-            return;
-        }
-
-        const difference = Math.abs(guess - correctValue);
-
-        if (parseInt(guess) === correctValue) {
-            resultElement.textContent = "🏆 Correct! That's impressive knowledge!";
-            resultElement.style.color = '#1DB954';
-        } else if (difference <= 50) {
-            resultElement.textContent = `🔥 Very close! You were only ${difference} off. The correct number was ${correctValue}.`;
-            resultElement.style.color = '#FFD700'; // Gold
-        } else {
-            resultElement.textContent = `❌ Not quite! You were ${difference} off. The correct number was ${correctValue}.`;
-            resultElement.style.color = '#FF4500'; // Red
-        }
-    }
-</script>
-
-</body>
-</html>
+    <div class="collaborator-race-container">
+        <div class="race-track">
+            <div class="collaborator-item ruby" onclick="showDetails('Ruby Sheikh - #1 Collaborator', 'You spent the most time and energy collaborating with Ruby this year.')">
+                <span class="rank">1.</span>
+                <div class="collaborator-image"></div>
+                <div class="collaborator-info">
+                    <span class="collaborator-name">Ruby Sheikh</span>
+                    <span class="collaborator-context">Top Collaboration Partner</span>
+                </div>
+            </div>
+            <div class="collaborator-item leanne" onclick="showDetails('Leanne Oliver - #2 Collaborator', 'A high-frequency contact essential to key project execution.')">
+                <span class="rank">2.</span>
+                <div class="collaborator-image"></div>
+                <div class="collaborator-info">
+                    <span class="collaborator-name">Leanne Oliver</span>
+                    <span class="collaborator-context">Key Meeting Co-Pilot</span>
+                </div>
+            </div>
