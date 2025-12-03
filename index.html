@@ -21,7 +21,7 @@
             color: #FFFFFF;
             min-height: 100vh;
             margin: 0;
-            padding: 0; /* Removing padding to maximize viewport usage for scroll snaps */
+            padding: 0; 
             overflow-x: hidden;
             position: relative;
             text-align: center;
@@ -56,6 +56,8 @@
             align-items: center;
             padding: 0 20px;
             box-sizing: border-box;
+            /* Added smooth transition for JS scrolling */
+            transition: transform 0.8s ease-in-out; 
         }
         .container {
             max-width: 900px;
@@ -66,7 +68,7 @@
         
         h1 {
             font-size: 4em;
-            color: #00FFFF;
+            color: #00FFFF; /* Vibrant Cyan/Blue Title */
             text-align: center;
             margin-bottom: 20px;
             font-weight: 900;
@@ -111,7 +113,7 @@
             display: block;
             margin-bottom: 5px;
             letter-spacing: -1px;
-            color: #5B40FF;
+            color: #5B40FF; /* Metric Purple/Blue Accent */
         }
         .sub-text {
             font-size: 0.9em;
@@ -210,7 +212,7 @@
             font-weight: bold;
             border: none;
             padding: 10px 20px;
-            border-radius: 5box-sizing: border-box;
+            border-radius: 5px;
             cursor: pointer;
             transition: background 0.2s;
         }
@@ -356,13 +358,15 @@
         alert(title + "\n\n" + message);
     }
 
-    // 2. Full-Page Scroll Logic (Guaranteed to work across browsers)
+    // 2. Full-Page Scroll Logic (Custom Smooth Snapping)
     const sections = document.querySelectorAll('.main-content');
     let currentSectionIndex = 0;
     let isScrolling = false;
-    const scrollTolerance = 50; // Minimum scroll delta to trigger a section change
+
+    // ADJUSTED VALUES FOR BETTER SENSITIVITY
+    const scrollTolerance = 20; // Lowered tolerance for higher sensitivity
     let lastScrollTime = 0;
-    const scrollDelay = 800; // Delay in ms between scroll events
+    const scrollDelay = 600; // Shorter delay for quicker responsiveness
 
     function scrollToSection(index) {
         if (index >= 0 && index < sections.length) {
@@ -373,10 +377,10 @@
             });
             currentSectionIndex = index;
             
-            // Set a timer to allow scrolling again
+            // Allow scrolling again after the smooth animation completes
             setTimeout(() => {
                 isScrolling = false;
-            }, 800); // Must match CSS transition time for smooth effect
+            }, 800); 
         }
     }
 
@@ -401,7 +405,7 @@
         }
     });
 
-    // Initialize to the first section
+    // Initialize to the first section on load
     document.addEventListener('DOMContentLoaded', () => {
         scrollToSection(0);
     });
