@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2025 Professional Wrapped: The Impact Report</title>
     <style>
-        /* 1. Base Styling and Clean Geometric Background */
+        /* 1. Base Styling and Scroll Snap for Full-Screen Sections */
         @keyframes race-movement {
             0% { transform: translateX(0); }
             100% { transform: translateX(100%); }
         }
         @keyframes checkerboard-scroll {
             0% { background-position: 0 0; }
-            100% { background-position: 40px 40px; } /* Scrolls diagonally */
+            100% { background-position: 40px 40px; } 
         }
 
         body {
             font-family: 'Spotify-Font', 'Helvetica Neue', Arial, sans-serif;
-            background-color: #000000; /* Deep Black */
+            background-color: #000000;
             color: #FFFFFF;
             min-height: 100vh;
             margin: 0;
@@ -25,6 +25,10 @@
             overflow-x: hidden;
             position: relative;
             text-align: center;
+            
+            /* NEW: Scroll Snap Properties */
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
         }
 
         /* NEW: Reliable, Moving Checkerboard Graphic */
@@ -33,7 +37,6 @@
             top: 0; left: 0;
             width: 100%;
             height: 100%;
-            /* Black and Dark Gray Checkerboard */
             background-image: 
                 linear-gradient(45deg, #111 25%, transparent 25%),
                 linear-gradient(-45deg, #111 25%, transparent 25%),
@@ -41,9 +44,9 @@
                 linear-gradient(-45deg, transparent 75%, #111 75%);
             background-size: 80px 80px;
             background-color: #000000;
-            opacity: 0.15; /* Subtle visibility */
+            opacity: 0.15;
             z-index: -2;
-            animation: checkerboard-scroll 100s linear infinite; /* Slow, continuous motion */
+            animation: checkerboard-scroll 100s linear infinite;
         }
         
         /* 2. Content Structure */
@@ -54,9 +57,17 @@
             position: relative;
             z-index: 10;
         }
+        
+        /* NEW: Ensures each major section snaps to the top of the viewport */
+        .section-snap {
+            min-height: 100vh; /* Ensures it fills the screen */
+            padding-top: 50px;
+            scroll-snap-align: start; 
+        }
+        
         h1 {
             font-size: 4em;
-            color: #00FFFF; /* NEW: Vibrant Cyan/Blue Title */
+            color: #00FFFF; /* Vibrant Cyan/Blue Title */
             text-align: center;
             margin-bottom: 20px;
             font-weight: 900;
@@ -65,10 +76,10 @@
         h2 {
             font-size: 2.2em;
             color: #FFFFFF;
-            margin-top: 50px;
             padding-bottom: 5px;
             text-align: left;
             font-weight: 700;
+            margin-top: 0;
         }
         .category {
             display: grid;
@@ -101,7 +112,7 @@
             display: block;
             margin-bottom: 5px;
             letter-spacing: -1px;
-            color: #5B40FF; /* Metric Purple/Blue Accent (Kept for contrast) */
+            color: #5B40FF; /* Metric Purple/Blue Accent */
         }
         .sub-text {
             font-size: 0.9em;
@@ -134,10 +145,9 @@
             transition: all 0.3s;
             padding: 5px 0;
             border-bottom: 1px solid #282828;
-            transform: translateX(-100%); /* Start off-screen left */
+            transform: translateX(-100%); 
             animation: race-movement 3s ease-out forwards;
         }
-        /* Specific delays for the race visual */
         .collaborator-item:nth-child(1) { animation-delay: 0.1s; }
         .collaborator-item:nth-child(2) { animation-delay: 0.3s; }
         .collaborator-item:nth-child(3) { animation-delay: 0.5s; }
@@ -147,7 +157,7 @@
         .rank {
             font-size: 2em;
             font-weight: 900;
-            color: #00FFFF; /* NEW: Rank color matches title */
+            color: #00FFFF;
             margin-right: 20px;
             width: 30px;
         }
@@ -215,114 +225,122 @@
 <div class="container">
     <h1>2025 Professional Wrapped</h1>
 
-    <h2>1. Impact & Reach: Year in Review</h2>
-    <div class="category">
-        
-        <div class="card clickable-card" onclick="showDetails('Trainee Reach Score: 737', 'You ran 15 distinct training sessions, reaching 737 employees. Your internal education efforts drove this immense organizational reach.')">
-            <h3>Trainee Reach Score</h3>
-            <span class="metric-value">737</span>
-            <span class="sub-text">Total Employees Taught (Across 15 Sessions)</span>
-        </div>
-        
-        <div class="card clickable-card" onclick="showDetails('Hone Quality & Volume', 'You own the Hone relationship, resulting in 559 employee classes taken with an average quality score of 4.6/5.0.')">
-            <h3>Platform Engagement Score</h3>
-            <span class="metric-value">4.6</span>
-            <span class="sub-text">Average Score on 559 Hone Classes</span>
-        </div>
+    <div class="section-snap">
+        <h2>1. Impact & Reach: Year in Review</h2>
+        <div class="category">
+            
+            <div class="card clickable-card" onclick="showDetails('Trainee Reach Score: 737', 'You ran 15 distinct training sessions, reaching 737 employees. Your internal education efforts drove this immense organizational reach.')">
+                <h3>Trainee Reach Score</h3>
+                <span class="metric-value">737</span>
+                <span class="sub-text">Total Employees Taught (Across 15 Sessions)</span>
+            </div>
+            
+            <div class="card clickable-card" onclick="showDetails('Hone Quality & Volume', 'You own the Hone relationship, resulting in 559 employee classes taken with an average quality score of 4.6/5.0.')">
+                <h3>Platform Engagement Score</h3>
+                <span class="metric-value">4.6</span>
+                <span class="sub-text">Average Score on 559 Hone Classes</span>
+            </div>
 
-        <div class="card clickable-card" onclick="showDetails('Module Adoption: 23% (Goal: 10%)', 'Your goal for this NEW module rollout (including your marketing video and training) was 10%. You achieved 23%, exceeding the target by 130%.')">
-            <h3>Module Adoption Rate</h3>
-            <span class="metric-value">23%</span>
-            <span class="sub-text">New Lattice Grow Module (Goal: 10%)</span>
-        </div>
+            <div class="card clickable-card" onclick="showDetails('Module Adoption: 23% (Goal: 10%)', 'Your goal for this NEW module rollout (including your marketing video and training) was 10%. You achieved 23%, exceeding the target by 130%.')">
+                <h3>Module Adoption Rate</h3>
+                <span class="metric-value">23%</span>
+                <span class="sub-text">New Lattice Grow Module (Goal: 10%)</span>
+            </div>
 
-        <div class="card clickable-card" onclick="showDetails('Strategic Objectives Managed', 'You oversaw the precise upload and integration of 2,623 strategic OKRs, providing a clear operational foundation for the entire business.')">
-            <h3>Operational Strategy Lift</h3>
-            <span class="metric-value">2,623</span>
-            <span class="sub-text">OKRs Uploaded/Managed</span>
-        </div>
-    </div>
-
-    <h2>2. Core Output: The Collaboration Race</h2>
-    <div class="collaborator-race-container">
-        <div class="race-track">
-            <div class="collaborator-item ruby" onclick="showDetails('Ruby Sheikh - #1 Collaborator', 'You spent the most time and energy collaborating with Ruby this year.')">
-                <span class="rank">1.</span>
-                <div class="collaborator-image"></div>
-                <div class="collaborator-info">
-                    <span class="collaborator-name">Ruby Sheikh</span>
-                    <span class="collaborator-context">Top Collaboration Partner</span>
-                </div>
-            </div>
-            <div class="collaborator-item leanne" onclick="showDetails('Leanne Oliver - #2 Collaborator', 'A high-frequency contact essential to key project execution.')">
-                <span class="rank">2.</span>
-                <div class="collaborator-image"></div>
-                <div class="collaborator-info">
-                    <span class="collaborator-name">Leanne Oliver</span>
-                    <span class="collaborator-context">Key Meeting Co-Pilot</span>
-                </div>
-            </div>
-            <div class="collaborator-item lauren" onclick="showDetails('Lauren Ruhstorfer - #3 Collaborator', 'Critical partner across cross-functional initiatives.')">
-                <span class="rank">3.</span>
-                <div class="collaborator-image"></div>
-                <div class="collaborator-info">
-                    <span class="collaborator-name">Lauren Ruhstorfer</span>
-                    <span class="collaborator-context">High-Frequency Contact</span>
-                </div>
-            </div>
-            <div class="collaborator-item nisha" onclick="showDetails('Nisha Thamban - #4 Collaborator', 'Crucial project member and frequent meeting co-pilot.')">
-                <span class="rank">4.</span>
-                <div class="collaborator-image"></div>
-                <div class="collaborator-info">
-                    <span class="collaborator-name">Nisha Thamban</span>
-                    <span class="collaborator-context">Critical Project Member</span>
-                </div>
-            </div>
-            <div class="collaborator-item paige" onclick="showDetails('Paige Kenigsburg - #5 Collaborator', 'Essential stakeholder and core team support.')">
-                <span class="rank">5.</span>
-                <div class="collaborator-image"></div>
-                <div class="collaborator-info">
-                    <span class="collaborator-name">Paige Kenigsburg</span>
-                    <span class="collaborator-context">Essential Stakeholder</span>
-                </div>
+            <div class="card clickable-card" onclick="showDetails('Strategic Objectives Managed', 'You oversaw the precise upload and integration of 2,623 strategic OKRs, providing a clear operational foundation for the entire business.')">
+                <h3>Operational Strategy Lift</h3>
+                <span class="metric-value">2,623</span>
+                <span class="sub-text">OKRs Uploaded/Managed</span>
             </div>
         </div>
     </div>
 
-    <h2>3. Innovation & Achievement: Metrics & Recognition</h2>
-    <div class="category">
-        
-        <div class="card clickable-card" onclick="showDetails('498 AI Prompts', 'Nearly 500 instances of leveraging Generative AI to accelerate drafting, summarization, and research.')">
-            <h3>AI Co-Pilot Score</h3>
-            <span class="metric-value">498</span>
-            <span class="sub-text">Prompts Sent to Gemini</span>
+    <div class="section-snap">
+        <h2>2. Core Output: The Collaboration Race</h2>
+        <div class="collaborator-race-container">
+            <div class="race-track">
+                <div class="collaborator-item ruby" onclick="showDetails('Ruby Sheikh - #1 Collaborator', 'You spent the most time and energy collaborating with Ruby this year.')">
+                    <span class="rank">1.</span>
+                    <div class="collaborator-image"></div>
+                    <div class="collaborator-info">
+                        <span class="collaborator-name">Ruby Sheikh</span>
+                        <span class="collaborator-context">Top Collaboration Partner</span>
+                    </div>
+                </div>
+                <div class="collaborator-item leanne" onclick="showDetails('Leanne Oliver - #2 Collaborator', 'A high-frequency contact essential to key project execution.')">
+                    <span class="rank">2.</span>
+                    <div class="collaborator-image"></div>
+                    <div class="collaborator-info">
+                        <span class="collaborator-name">Leanne Oliver</span>
+                        <span class="collaborator-context">Key Meeting Co-Pilot</span>
+                    </div>
+                </div>
+                <div class="collaborator-item lauren" onclick="showDetails('Lauren Ruhstorfer - #3 Collaborator', 'Critical partner across cross-functional initiatives.')">
+                    <span class="rank">3.</span>
+                    <div class="collaborator-image"></div>
+                    <div class="collaborator-info">
+                        <span class="collaborator-name">Lauren Ruhstorfer</span>
+                        <span class="collaborator-context">High-Frequency Contact</span>
+                    </div>
+                </div>
+                <div class="collaborator-item nisha" onclick="showDetails('Nisha Thamban - #4 Collaborator', 'Crucial project member and frequent meeting co-pilot.')">
+                    <span class="rank">4.</span>
+                    <div class="collaborator-image"></div>
+                    <div class="collaborator-info">
+                        <span class="collaborator-name">Nisha Thamban</span>
+                        <span class="collaborator-context">Critical Project Member</span>
+                    </div>
+                </div>
+                <div class="collaborator-item paige" onclick="showDetails('Paige Kenigsburg - #5 Collaborator', 'Essential stakeholder and core team support.')">
+                    <span class="rank">5.</span>
+                    <div class="collaborator-image"></div>
+                    <div class="collaborator-info">
+                        <span class="collaborator-name">Paige Kenigsburg</span>
+                        <span class="collaborator-context">Essential Stakeholder</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <div class="card clickable-card" onclick="showDetails('Expertise on Display: 139', 'Your technical expertise was frequently shared, visually guiding colleagues in 139 meetings.')">
-            <h3>Screen Share Frequency</h3>
-            <span class="metric-value">139</span>
-            <span class="sub-text">Meetings with Screen Share</span>
-        </div>
-        
-        <div class="card clickable-card" onclick="showDetails('Content Volume: 37 Presentations', 'You created 37 PowerPoint presentations and launched 5 surveys, capturing 921 responses.')">
-            <h3>Content & Feedback Loop</h3>
-            <span class="metric-value">37</span>
-            <span class="sub-text">Presentations Created (5 Surveys Launched)</span>
-        </div>
+    <div class="section-snap">
+        <h2>3. Innovation & Achievement: Metrics & Recognition</h2>
+        <div class="category">
+            
+            <div class="card clickable-card" onclick="showDetails('498 AI Prompts', 'Nearly 500 instances of leveraging Generative AI to accelerate drafting, summarization, and research.')">
+                <h3>AI Co-Pilot Score</h3>
+                <span class="metric-value">498</span>
+                <span class="sub-text">Prompts Sent to Gemini</span>
+            </div>
 
-        <div class="card clickable-card" onclick="showDetails('X-Factor: Indispensable Force', 'Your citation highlights Excellence in Execution, being the Ultimate Team Player, and giving beyond your role. You are an indispensable force within your team.')">
-            <h3>Top Tier Recognition</h3>
-            <span class="metric-value" style="color: #00FFFF;">1</span>
-            <span class="sub-text">X-Factor Award Received</span>
+            <div class="card clickable-card" onclick="showDetails('Expertise on Display: 139', 'Your technical expertise was frequently shared, visually guiding colleagues in 139 meetings.')">
+                <h3>Screen Share Frequency</h3>
+                <span class="metric-value">139</span>
+                <span class="sub-text">Meetings with Screen Share</span>
+            </div>
+            
+            <div class="card clickable-card" onclick="showDetails('Content Volume: 37 Presentations', 'You created 37 PowerPoint presentations and launched 5 surveys, capturing 921 responses.')">
+                <h3>Content & Feedback Loop</h3>
+                <span class="metric-value">37</span>
+                <span class="sub-text">Presentations Created (5 Surveys Launched)</span>
+            </div>
+
+            <div class="card clickable-card" onclick="showDetails('X-Factor: Indispensable Force', 'Your citation highlights Excellence in Execution, being the Ultimate Team Player, and giving beyond your role. You are an indispensable force within your team.')">
+                <h3>Top Tier Recognition</h3>
+                <span class="metric-value" style="color: #00FFFF;">1</span>
+                <span class="sub-text">X-Factor Award Received</span>
+            </div>
         </div>
     </div>
     
-    <div class="quiz-section">
-        <h2>4. Test Your Knowledge: The Data Challenge</h2>
-        <p style="color: #AAAAAA;">Guess the number of unique survey responses I collected in 2025:</p>
-        <input type="number" id="quizGuess" placeholder="Enter your guess" style="padding: 10px; margin: 10px 10px 10px 0; width: 200px; border-radius: 5px; border: none; background: #121212; color: white;">
-        <button onclick="checkQuiz()" class="quiz-button">Submit Guess</button>
-        <p id="quizResult" style="margin-top: 15px; font-weight: bold;"></p>
+    <div class="section-snap">
+        <div class="quiz-section">
+            <h2>4. Test Your Knowledge: The Data Challenge</h2>
+            <p style="color: #AAAAAA;">Guess the number of unique survey responses I collected in 2025:</p>
+            <input type="number" id="quizGuess" placeholder="Enter your guess" style="padding: 10px; margin: 10px 10px 10px 0; width: 200px; border-radius: 5px; border: none; background: #121212; color: white;">
+            <button onclick="checkQuiz()" class="quiz-button">Submit Guess</button>
+            <p id="quizResult" style="margin-top: 15px; font-weight: bold;"></p>
+        </div>
     </div>
 
 </div>
