@@ -248,3 +248,243 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.2s;
+        }
+        .quiz-button:hover { background: #159c43; }
+    </style>
+</head>
+<body>
+
+<div class="bg-pattern"></div>
+
+<div id="fullpage-wrapper">
+    <div class="main-content" id="section1">
+        <div class="aesthetic-wrapper">
+            <span class="graphic-shape">2025</span>
+            <div class="graphic-circles" style="top: 10%; right: 10%;"></div>
+        </div>
+        <div class="container">
+            <h1>2025 Professional Wrapped</h1>
+            <h2>1. Impact & Reach: Year in Review</h2>
+            <div class="category">
+                
+                <div class="card clickable-card" onclick="showDetails('Trainee Reach Score: 737', 'You ran 15 distinct training sessions, reaching 737 employees. Your internal education efforts drove this immense organizational reach.')">
+                    <h3>Trainee Reach Score</h3>
+                    <span class="metric-value">737</span>
+                    <span class="sub-text">Total Employees Taught (Across 15 Sessions)</span>
+                </div>
+                
+                <div class="card clickable-card" onclick="showDetails('Hone Quality & Volume', 'You own the Hone relationship, resulting in 559 employee classes taken with an average quality score of 4.6/5.0.')">
+                    <h3>Platform Engagement Score</h3>
+                    <span class="metric-value">4.6</span>
+                    <span class="sub-text">Average Score on 559 Hone Classes</span>
+                </div>
+
+                <div class="card clickable-card" onclick="showDetails('Module Adoption: 23% (Goal: 10%)', 'Your goal for this NEW module rollout (including your marketing video and training) was 10%. You achieved 23%, exceeding the target by 130%.')">
+                    <h3>Module Adoption Rate</h3>
+                    <span class="metric-value">23%</span>
+                    <span class="sub-text">New Lattice Grow Module (Goal: 10%)</span>
+                </div>
+
+                <div class="card clickable-card" onclick="showDetails('Strategic Objectives Managed', 'You oversaw the precise upload and integration of 2,623 strategic OKRs, providing a clear operational foundation for the entire business.')">
+                    <h3>Operational Strategy Lift</h3>
+                    <span class="metric-value">2,623</span>
+                    <span class="sub-text">OKRs Uploaded/Managed</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content" id="section2">
+        <div class="aesthetic-wrapper">
+            <span class="graphic-shape" style="top: 5%; left: 5%;">RACE</span>
+            <div class="graphic-circles" style="bottom: 10%; right: 5%;"></div>
+        </div>
+        <div class="container">
+            <h2>2. Core Output: The Collaboration Race</h2>
+            <div class="collaborator-race-container">
+                <div class="race-track">
+                    <div class="collaborator-item ruby" onclick="showDetails('Ruby Sheikh - #1 Collaborator', 'You spent the most time and energy collaborating with Ruby this year.')">
+                        <span class="rank">1.</span>
+                        <div class="collaborator-image"></div>
+                        <div class="collaborator-info">
+                            <span class="collaborator-name">Ruby Sheikh</span>
+                            <span class="collaborator-context">Top Collaboration Partner</span>
+                        </div>
+                    </div>
+                    <div class="collaborator-item leanne" onclick="showDetails('Leanne Oliver - #2 Collaborator', 'A high-frequency contact essential to key project execution.')">
+                        <span class="rank">2.</span>
+                        <div class="collaborator-image"></div>
+                        <div class="collaborator-info">
+                            <span class="collaborator-name">Leanne Oliver</span>
+                            <span class="collaborator-context">Key Meeting Co-Pilot</span>
+                        </div>
+                    </div>
+                    <div class="collaborator-item lauren" onclick="showDetails('Lauren Ruhstorfer - #3 Collaborator', 'Critical partner across cross-functional initiatives.')">
+                        <span class="rank">3.</span>
+                        <div class="collaborator-image"></div>
+                        <div class="collaborator-info">
+                            <span class="collaborator-name">Lauren Ruhstorfer</span>
+                            <span class="collaborator-context">High-Frequency Contact</span>
+                        </div>
+                    </div>
+                    <div class="collaborator-item nisha" onclick="showDetails('Nisha Thamban - #4 Collaborator', 'Crucial project member and frequent meeting co-pilot.')">
+                        <span class="rank">4.</span>
+                        <div class="collaborator-image"></div>
+                        <div class="collaborator-info">
+                            <span class="collaborator-name">Nisha Thamban</span>
+                            <span class="collaborator-context">Critical Project Member</span>
+                        </div>
+                    </div>
+                    <div class="collaborator-item paige" onclick="showDetails('Paige Kenigsburg - #5 Collaborator', 'Essential stakeholder and core team support.')">
+                        <span class="rank">5.</span>
+                        <div class="collaborator-image"></div>
+                        <div class="collaborator-info">
+                            <span class="collaborator-name">Paige Kenigsburg</span>
+                            <span class="collaborator-context">Essential Stakeholder</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content" id="section3">
+        <div class="aesthetic-wrapper">
+            <span class="graphic-shape" style="top: -5%; right: 15%; transform: rotate(5deg);">AI</span>
+            <div class="graphic-circles" style="top: 15%; left: 5%; background-image: radial-gradient(circle at center, #1DB954 5%, #000 5.1%, #000 15%, #1DB954 15.1%);"></div>
+        </div>
+        <div class="container">
+            <h2>3. Innovation & Achievement: Metrics & Recognition</h2>
+            <div class="category">
+                
+                <div class="card clickable-card" onclick="showDetails('498 AI Prompts', 'Nearly 500 instances of leveraging Generative AI to accelerate drafting, summarization, and research.')">
+                    <h3>AI Co-Pilot Score</h3>
+                    <span class="metric-value">498</span>
+                    <span class="sub-text">Prompts Sent to Gemini</span>
+                </div>
+
+                <div class="card clickable-card" onclick="showDetails('Expertise on Display: 139', 'Your technical expertise was frequently shared, visually guiding colleagues in 139 meetings.')">
+                    <h3>Screen Share Frequency</h3>
+                    <span class="metric-value">139</span>
+                    <span class="sub-text">Meetings with Screen Share</span>
+                </div>
+                
+                <div class="card clickable-card" onclick="showDetails('Content Volume: 37 Presentations', 'You created 37 PowerPoint presentations and launched 5 surveys, capturing 921 responses.')">
+                    <h3>Content & Feedback Loop</h3>
+                    <span class="metric-value">37</span>
+                    <span class="sub-text">Presentations Created (5 Surveys Launched)</span>
+                </div>
+
+                <div class="card clickable-card" onclick="showDetails('X-Factor: Indispensable Force', 'Your citation highlights Excellence in Execution, being the Ultimate Team Player, and giving beyond your role. You are an indispensable force within your team.')">
+                    <h3>Top Tier Recognition</h3>
+                    <span class="metric-value" style="color: #00FFFF;">1</span>
+                    <span class="sub-text">X-Factor Award Received</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content" id="section4">
+        <div class="aesthetic-wrapper">
+            <span class="graphic-shape" style="bottom: 5%; left: 10%; transform: rotate(10deg);">QZ</span>
+        </div>
+        <div class="container">
+            <div class="quiz-section">
+                <h2>4. Test Your Knowledge: The Data Challenge</h2>
+                <p style="color: #AAAAAA;">Guess the number of unique survey responses I collected in 2025:</p>
+                <input type="number" id="quizGuess" placeholder="Enter your guess" style="padding: 10px; margin: 10px 10px 10px 0; width: 200px; border-radius: 5px; border: none; background: #121212; color: white;">
+                <button onclick="checkQuiz()" class="quiz-button">Submit Guess</button>
+                <p id="quizResult" style="margin-top: 15px; font-weight: bold;"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 1. Alert Pop-up Function
+    function showDetails(title, message) {
+        alert(title + "\n\n" + message);
+    }
+
+    // 2. Full-Page Scroll Logic (Custom Smooth Snapping)
+    const sections = document.querySelectorAll('.main-content');
+    let currentSectionIndex = 0;
+    let isScrolling = false;
+
+    // ADJUSTED VALUES FOR OPTIMAL SENSITIVITY
+    const scrollTolerance = 20; 
+    let lastScrollTime = 0;
+    const scrollDelay = 600; 
+
+    function scrollToSection(index) {
+        if (index >= 0 && index < sections.length) {
+            isScrolling = true;
+            window.scrollTo({
+                top: sections[index].offsetTop,
+                behavior: 'smooth'
+            });
+            currentSectionIndex = index;
+            
+            // Allow scrolling again after the smooth animation completes
+            setTimeout(() => {
+                isScrolling = false;
+            }, 800); 
+        }
+    }
+
+    // Handle scroll wheel events
+    document.addEventListener('wheel', (e) => {
+        // Debounce the scroll event
+        const currentTime = new Date().getTime();
+        if (currentTime - lastScrollTime < scrollDelay) {
+            return;
+        }
+        lastScrollTime = currentTime;
+
+        if (isScrolling) return;
+
+        // Determine scroll direction
+        if (e.deltaY > scrollTolerance) {
+            // Scroll Down
+            scrollToSection(currentSectionIndex + 1);
+        } else if (e.deltaY < -scrollTolerance) {
+            // Scroll Up
+            scrollToSection(currentSectionIndex - 1);
+        }
+    });
+
+    // Initialize to the first section on load
+    document.addEventListener('DOMContentLoaded', () => {
+        scrollToSection(0);
+    });
+    
+    // 3. Quiz Functionality (Unchanged)
+    const correctValue = 921; 
+
+    function checkQuiz() {
+        const guess = document.getElementById('quizGuess').value;
+        const resultElement = document.getElementById('quizResult');
+
+        if (!guess) {
+            resultElement.textContent = "Please enter a number!";
+            resultElement.style.color = 'yellow';
+            return;
+        }
+
+        const difference = Math.abs(guess - correctValue);
+
+        if (parseInt(guess) === correctValue) {
+            resultElement.textContent = "🏆 Correct! That's impressive knowledge!";
+            resultElement.style.color = '#1DB954';
+        } else if (difference <= 50) {
+            resultElement.textContent = `🔥 Very close! You were only ${difference} off. The correct number was ${correctValue}.`;
+            resultElement.style.color = '#FFD700'; 
+        } else {
+            resultElement.textContent = `❌ Not quite! You were ${difference} off. The correct number was ${correctValue}.`;
+            resultElement.style.color = '#FF4500'; 
+        }
+    }
+</script>
+
+</body>
+</html>
