@@ -10,6 +10,16 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(100%); }
         }
+        @keyframes pulse-graphic {
+            0% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.25; transform: scale(1.05); }
+            100% { opacity: 0.1; transform: scale(1); }
+        }
+        @keyframes spin-circles {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
 
         body {
             font-family: 'Spotify-Font', 'Helvetica Neue', Arial, sans-serif;
@@ -24,7 +34,7 @@
             overflow-y: hidden; /* JavaScript manages vertical scrolling */
         }
 
-        /* Background - Static, Subtle Checkerboard */
+        /* Background - Main Static Pattern (Subtle) */
         .bg-pattern {
             position: fixed;
             top: 0; left: 0;
@@ -41,41 +51,22 @@
             z-index: -2;
         }
 
-        /* NEW: Aesthetic Wrapper (For Section-Specific Graphics) */
-        .aesthetic-wrapper {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        /* NEW: Graphic Element 1 (The Big Red 2025/5-like shape) */
-        .graphic-shape {
-            position: absolute;
-            font-size: 40vh; /* Massive size */
-            font-weight: 900;
-            color: #F00000;
-            opacity: 0.2;
-            top: -10%;
-            right: -10%;
-            transform: rotate(-15deg);
-        }
-
-        /* NEW: Graphic Element 2 (Concentric Circles) */
-        .graphic-circles {
-            position: absolute;
-            bottom: -5%;
-            left: -10%;
-            width: 50vh;
-            height: 50vh;
+        /* NEW: Layer 2 - High-Contrast Animated Graphic (Concentric Circles) */
+        .bg-accent {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 150vw;
+            height: 150vh;
+            transform: translate(-50%, -50%);
             background-image: radial-gradient(circle at center, 
-                #00FFFF 5%, #000 5.1%, #000 15%, #00FFFF 15.1%, 
-                #00FFFF 25%, #000 25.1%, #000 35%, #00FFFF 35.1%
+                #FFF 1%, #000 1.1%, #000 3%, #FFF 3.1%, 
+                #FFF 5%, #000 5.1%, #000 7%, #FFF 7.1%
             );
-            border-radius: 50%;
-            opacity: 0.2;
+            background-size: cover;
+            opacity: 0.1;
+            z-index: -1;
+            animation: spin-circles 80s infinite linear; 
         }
 
         /* 2. Content Structure */
@@ -89,7 +80,7 @@
             padding: 0 20px;
             box-sizing: border-box;
             transition: transform 0.8s ease-in-out; 
-            position: relative; /* Needs to be relative for wrapper */
+            position: relative;
         }
         .container {
             max-width: 900px;
@@ -98,13 +89,14 @@
             z-index: 10;
         }
         
+        /* NEW FONT/COLOR CHANGES */
         h1 {
             font-size: 4em;
-            color: #00FFFF; /* Vibrant Cyan/Blue Title */
+            color: #F00000; /* BOLD RED ACCENT */
             text-align: center;
             margin-bottom: 20px;
             font-weight: 900;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+            text-shadow: 0 0 10px rgba(240, 0, 0, 0.4);
         }
         h2 {
             font-size: 2.2em;
@@ -145,15 +137,15 @@
             display: block;
             margin-bottom: 5px;
             letter-spacing: -1px;
-            color: #5B40FF; /* Metric Purple/Blue Accent */
+            color: #1DB954; /* VIBRANT GREEN for numbers */
         }
         .sub-text {
             font-size: 0.9em;
             color: #AAAAAA;
         }
-        .card:hover { border-bottom-color: #1DB954; }
+        .card:hover { border-bottom-color: #F00000; } /* Hover border RED */
         
-        /* 3. Collaboration Race */
+        /* 3. Collaboration Race (Vertical Ranking Layout) */
         .collaborator-race-container {
             background: #1a1a1a;
             border-radius: 10px;
@@ -181,7 +173,6 @@
             transform: translateX(-100%); 
             animation: race-movement 3s ease-out forwards;
         }
-        /* Specific delays for the race visual */
         .collaborator-item:nth-child(1) { animation-delay: 0.1s; }
         .collaborator-item:nth-child(2) { animation-delay: 0.3s; }
         .collaborator-item:nth-child(3) { animation-delay: 0.5s; }
@@ -191,7 +182,7 @@
         .rank {
             font-size: 2em;
             font-weight: 900;
-            color: #00FFFF;
+            color: #F00000; /* Rank color is RED */
             margin-right: 20px;
             width: 30px;
         }
@@ -201,7 +192,7 @@
             border-radius: 50%;
             background-size: cover;
             background-position: center;
-            border: 3px solid #1DB954; 
+            border: 3px solid #1DB954; /* Image border is GREEN */
         }
         /* Image mapping */
         .ruby .collaborator-image { background-image: url('images/ruby.jpg'); }
@@ -234,13 +225,13 @@
         }
         #quizGuess, #quizResult {
             background: #121212;
-            border: 2px solid #5B40FF;
+            border: 2px solid #F00000; /* Quiz border RED */
             color: #FFFFFF;
             padding: 10px;
             border-radius: 5px;
         }
         .quiz-button {
-            background: #1DB954;
+            background: #1DB954; /* Quiz button GREEN */
             color: white;
             font-weight: bold;
             border: none;
@@ -255,12 +246,12 @@
 <body>
 
 <div class="bg-pattern"></div>
+<div class="bg-accent"></div>
 
 <div id="fullpage-wrapper">
     <div class="main-content" id="section1">
         <div class="aesthetic-wrapper">
             <span class="graphic-shape">2025</span>
-            <div class="graphic-circles" style="top: 10%; right: 10%;"></div>
         </div>
         <div class="container">
             <h1>2025 Professional Wrapped</h1>
@@ -297,7 +288,7 @@
     <div class="main-content" id="section2">
         <div class="aesthetic-wrapper">
             <span class="graphic-shape" style="top: 5%; left: 5%;">RACE</span>
-            <div class="graphic-circles" style="bottom: 10%; right: 5%;"></div>
+            <div class="bg-accent" style="width: 100vw; height: 100vh; animation-delay: -5s;"></div>
         </div>
         <div class="container">
             <h2>2. Core Output: The Collaboration Race</h2>
@@ -351,7 +342,6 @@
     <div class="main-content" id="section3">
         <div class="aesthetic-wrapper">
             <span class="graphic-shape" style="top: -5%; right: 15%; transform: rotate(5deg);">AI</span>
-            <div class="graphic-circles" style="top: 15%; left: 5%; background-image: radial-gradient(circle at center, #1DB954 5%, #000 5.1%, #000 15%, #1DB954 15.1%);"></div>
         </div>
         <div class="container">
             <h2>3. Innovation & Achievement: Metrics & Recognition</h2>
@@ -377,7 +367,7 @@
 
                 <div class="card clickable-card" onclick="showDetails('X-Factor: Indispensable Force', 'Your citation highlights Excellence in Execution, being the Ultimate Team Player, and giving beyond your role. You are an indispensable force within your team.')">
                     <h3>Top Tier Recognition</h3>
-                    <span class="metric-value" style="color: #00FFFF;">1</span>
+                    <span class="metric-value" style="color: #F00000;">1</span>
                     <span class="sub-text">X-Factor Award Received</span>
                 </div>
             </div>
