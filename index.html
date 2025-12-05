@@ -10,9 +10,10 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(100%); }
         }
-        @keyframes checkerboard-scroll {
-            0% { background-position: 0 0; }
-            100% { background-position: 40px 40px; } 
+        @keyframes pulse-graphic {
+            0% { opacity: 0.15; transform: scale(1); }
+            50% { opacity: 0.25; transform: scale(1.02); }
+            100% { opacity: 0.15; transform: scale(1); }
         }
 
         body {
@@ -25,10 +26,10 @@
             overflow-x: hidden;
             position: relative;
             text-align: center;
-            overflow-y: hidden; /* JavaScript will manage vertical scrolling */
+            overflow-y: hidden; /* JavaScript manages vertical scrolling */
         }
 
-        /* NEW: Reliable, Moving Checkerboard Graphic */
+        /* NEW: Layer 1 - Static, Subtle Checkerboard */
         .bg-pattern {
             position: fixed;
             top: 0; left: 0;
@@ -41,22 +42,38 @@
                 linear-gradient(-45deg, transparent 75%, #111 75%);
             background-size: 80px 80px;
             background-color: #000000;
-            opacity: 0.15;
+            opacity: 0.1;
             z-index: -2;
-            animation: checkerboard-scroll 100s linear infinite;
+        }
+
+        /* NEW: Layer 2 - Pulsing, High-Contrast Accent Graphic (Concentric Circles) */
+        .bg-accent {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 150vw;
+            height: 150vh;
+            transform: translate(-50%, -50%);
+            background-image: radial-gradient(circle at center, 
+                #00FFFF 1%, #000 1.1%, #000 3%, #00FFFF 3.1%, 
+                #00FFFF 5%, #000 5.1%, #000 7%, #00FFFF 7.1%
+            );
+            background-size: cover;
+            opacity: 0.2;
+            z-index: -1;
+            animation: pulse-graphic 10s infinite ease-in-out; 
         }
         
         /* 2. Content Structure */
         .main-content {
             width: 100%;
-            height: 100vh; /* Critical: Each section fills the screen height */
+            height: 100vh; 
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center content vertically in the viewport */
+            justify-content: center; 
             align-items: center;
             padding: 0 20px;
             box-sizing: border-box;
-            /* Added smooth transition for JS scrolling */
             transition: transform 0.8s ease-in-out; 
         }
         .container {
@@ -222,6 +239,7 @@
 <body>
 
 <div class="bg-pattern"></div>
+<div class="bg-accent"></div>
 
 <div id="fullpage-wrapper">
     <div class="main-content" id="section1">
@@ -363,10 +381,10 @@
     let currentSectionIndex = 0;
     let isScrolling = false;
 
-    // ADJUSTED VALUES FOR BETTER SENSITIVITY
-    const scrollTolerance = 20; // Lowered tolerance for higher sensitivity
+    // ADJUSTED VALUES FOR OPTIMAL SENSITIVITY
+    const scrollTolerance = 20; 
     let lastScrollTime = 0;
-    const scrollDelay = 600; // Shorter delay for quicker responsiveness
+    const scrollDelay = 600; 
 
     function scrollToSection(index) {
         if (index >= 0 && index < sections.length) {
